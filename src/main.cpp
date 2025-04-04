@@ -23,6 +23,7 @@ int main(int argc, char* argv[]) {
 
     // run the code!
     Interpreter interpreter(code);
+    interpreter.run();
 
     return 0;
 }
