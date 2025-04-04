@@ -6,8 +6,11 @@
 class Interpreter {
 public:
     Interpreter(const std::string& code);
-
     void run();
+
+private:
+    uint32_t findMatchingLoopEnd();
+    uint32_t findMatchingLoopBegin();
 
 private:
     uint32_t programCounter = 0;
