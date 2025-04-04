@@ -14,9 +14,9 @@ int main() {
     interpreter = Interpreter(ARRAY_SIZE_TEST);
     interpreter.run();
 
-    // std::cout << "BOUNDS_TEST" << std::endl;
-    // interpreter = Interpreter(BOUNDS_TEST);
-    // interpreter.run();
+    std::cout << "BOUNDS_TEST" << std::endl;
+    interpreter = Interpreter(BOUNDS_TEST);
+    interpreter.run();
 
     std::cout << "OBSCURE_TEST" << std::endl;
     interpreter = Interpreter(OBSCURE_TEST);
