@@ -4,11 +4,14 @@ workspace "brainfuckjit"
 project "interpreter"
     kind "ConsoleApp"
     language "C++"
+    warnings "Everything"
 
     files {
         "src/**.cpp",
         "include/**.hpp",
     }
+
+    includedirs { "include" }
 
     filter "configurations:Debug"
       defines { "BFJIT_DEBUG" }
