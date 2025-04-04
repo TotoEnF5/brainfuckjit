@@ -1,5 +1,6 @@
 #include <interpreter.hpp>
 #include <iostream>
+#include <cstring>
 
 Interpreter::Interpreter(const std::string& code, const std::string& input) {
     this->code = code;
@@ -30,24 +31,26 @@ void Interpreter::run() {
             break;
         case ',': // take input
             if (this->input.empty()) {
-                std::cin >> this->input;
+                this->cells.at(this->cellCounter) = EOF;
             }
-            this->cells.at(this->cellCounter) = this->input[0];
-            this->input.erase(0);
+            else {
+                this->cells.at(this->cellCounter) = this->input.at(0);
+                this->input.erase(0);
+            }
             break;
         case '[': // loop begin
-            // if zero, break loop and go to the matching ']'
+            // if zero, break loop and go to the command after the matching ']'
             // else do nothing and proceed to the next command
             if (this->cells.at(this->cellCounter) == 0) {
-                this->programCounter = this->findMatchingLoopEnd();
+                this->programCounter = this->findMatchingLoopEnd() + 1;
                 incrementProgramCounter = false;
             }
             break;
         case ']': // loop end
-            // if nonzero, go to the matching '['
+            // if nonzero, go to the command after thematching '['
             // else do nothing and proceed to the next command
             if (this->cells.at(this->cellCounter) != 0) {
-                this->programCounter = this->findMatchingLoopBegin();
+                this->programCounter = this->findMatchingLoopBegin() + 1;
                 incrementProgramCounter = false;
             }
             break;
