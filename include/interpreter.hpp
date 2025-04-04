@@ -5,7 +5,7 @@
 
 class Interpreter {
 public:
-    Interpreter(const std::string& code);
+    Interpreter(const std::string& code, const std::string& input = "");
     void run();
 
 private:
@@ -17,4 +17,5 @@ private:
     uint16_t cellCounter = 0;
     std::array<uint8_t, 65536> cells;
     std::string code;
+    std::string input;
 };

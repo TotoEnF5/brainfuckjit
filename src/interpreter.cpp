@@ -1,8 +1,9 @@
 #include <interpreter.hpp>
 #include <iostream>
 
-Interpreter::Interpreter(const std::string& code) {
+Interpreter::Interpreter(const std::string& code, const std::string& input) {
     this->code = code;
+    this->input = input;
     this->cells.fill(0);
 }
 
@@ -27,10 +28,12 @@ void Interpreter::run() {
         case '.': // output to stdout
             std::cout << (char)this->cells.at(this->cellCounter);
             break;
-        case ',': // take input from stdin
-            char input;
-            std::cin >> input;
-            this->cells.at(this->cellCounter) = input;
+        case ',': // take input
+            if (this->input.empty()) {
+                std::cin >> this->input;
+            }
+            this->cells.at(this->cellCounter) = this->input[0];
+            this->input.erase(0);
             break;
         case '[': // loop begin
             // if zero, break loop and go to the matching ']'
